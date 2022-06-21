@@ -11,7 +11,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     TextView result;
-    String s, t;
+    String s;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,17 +130,33 @@ public class MainActivity extends AppCompatActivity {
                 result.setText(s);
             }
         });
-        findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.clear).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 s = "";
+                result.setText(s);
+            }
+
+        });
+        findViewById(R.id.delete).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                s = s.substring(0, s.length()-1);
                 result.setText(s);
             }
         });
         findViewById(R.id.equal).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(s.contains("x")||s.contains("+")||s.contains("-")||s.contains("÷")){
+                    if(s.contains("x")){
+                        String[] digits = s.split("x", 0);
+                        result.setText(String.valueOf(Integer.parseInt(digits[0]) * Integer.parseInt(digits[1])));
+                    }
+                }
+                else{
+                    result.setText(s);
+                }
             }
         });
     }
