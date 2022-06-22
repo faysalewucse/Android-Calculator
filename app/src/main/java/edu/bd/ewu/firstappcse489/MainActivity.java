@@ -8,11 +8,19 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     TextView result;
     String s;
+    ArrayList<String> operators = new ArrayList<String>();
 
+    public static int addRemove(ArrayList digits, int div_index, int res) {
+        return 0;
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
         result = findViewById(R.id.result);
         s = "";
+
         findViewById(R.id.one).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -27,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
                 result.setText(s);
             }
         });
-
         findViewById(R.id.two).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,35 +92,41 @@ public class MainActivity extends AppCompatActivity {
                 result.setText(s);
             }
         });
-
         findViewById(R.id.dot).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 s = s+".";
                 result.setText(s);
             }
-        });findViewById(R.id.zero).setOnClickListener(new View.OnClickListener() {
+        });
+        findViewById(R.id.zero).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 s = s+"0";
                 result.setText(s);
             }
-        });findViewById(R.id.plus).setOnClickListener(new View.OnClickListener() {
+        });
+        findViewById(R.id.plus).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 s = s+"+";
+                operators.add("+");
                 result.setText(s);
             }
-        });findViewById(R.id.minus).setOnClickListener(new View.OnClickListener() {
+        });
+        findViewById(R.id.minus).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 s = s+"-";
+                operators.add("-");
                 result.setText(s);
             }
-        });findViewById(R.id.div).setOnClickListener(new View.OnClickListener() {
+        });
+        findViewById(R.id.div).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 s = s+"÷";
+                operators.add("÷");
                 result.setText(s);
             }
         });
@@ -120,13 +134,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 s = s+"x";
-                result.setText(s);
-            }
-        });
-        findViewById(R.id.multi).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                s = s+"x";
+                operators.add("x");
                 result.setText(s);
             }
         });
@@ -148,14 +156,88 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.equal).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(s.contains("x")||s.contains("+")||s.contains("-")||s.contains("÷")){
-                    if(s.contains("x")){
-                        String[] digits = s.split("x", 0);
-                        result.setText(String.valueOf(Integer.parseInt(digits[0]) * Integer.parseInt(digits[1])));
+                if(s.charAt(s.length()-1) != 'x' && s.charAt(s.length()-1) != '-' && s.charAt(s.length()-1) != '+' && s.charAt(s.length()-1) != '÷'){
+                    int res = 0;
+                    //Separating Digits
+                    String[] list = s.split("\\+|\\-|x|÷");
+                    ArrayList<String> digits = new ArrayList<>(Arrays.asList(list));
+
+                    //Separating Operators
+                    char[] s_arr = s.toCharArray();
+                    ArrayList<Character> operators = new ArrayList<>();
+                    Character c;
+                    for (char e : s_arr)
+                    {
+                        c = e;
+                        if(c.equals('x') || c.equals('-') || c.equals('+')|| c.equals('÷')){
+                            operators.add(c);
+                        }
                     }
+                    for (int i = 0; i <= operators.size(); i++) {
+                        if(operators.indexOf('x') > operators.indexOf('÷')){
+                            if(operators.contains('÷')){
+                                int div_index = operators.indexOf('÷');
+                                res = Integer.parseInt(digits.get(div_index)) / Integer.parseInt(digits.get(div_index+1));
+                                operators.remove(div_index);
+
+                                digits.remove(div_index);
+                                digits.add(div_index, String.valueOf(res));
+                                digits.remove(div_index+1);
+                            }
+                            if(operators.contains('x')){
+                                int div_index = operators.indexOf('x');
+                                res = Integer.parseInt(digits.get(div_index)) * Integer.parseInt(digits.get(div_index+1));
+                                operators.remove(div_index);
+
+                                digits.remove(div_index);
+                                digits.add(div_index, String.valueOf(res));
+                                digits.remove(div_index+1);
+                            }
+                        }
+                        else{
+                            if(operators.contains('x')){
+                                int div_index = operators.indexOf('x');
+                                res = Integer.parseInt(digits.get(div_index)) * Integer.parseInt(digits.get(div_index+1));
+                                operators.remove(div_index);
+
+                                digits.remove(div_index);
+                                digits.add(div_index, String.valueOf(res));
+                                digits.remove(div_index+1);
+                            }
+                            if(operators.contains('÷')){
+                                int div_index = operators.indexOf('÷');
+                                res = Integer.parseInt(digits.get(div_index)) / Integer.parseInt(digits.get(div_index+1));
+                                operators.remove(div_index);
+
+                                digits.remove(div_index);
+                                digits.add(div_index, String.valueOf(res));
+                                digits.remove(div_index+1);
+                            }
+                        }
+                        if(operators.contains('-')){
+                            int div_index = operators.indexOf('-');
+                            System.out.println(digits.get(div_index) + digits.get(div_index+1));
+                            res = Integer.parseInt(digits.get(div_index)) - Integer.parseInt(digits.get(div_index+1));
+                            operators.remove(div_index);
+
+                            digits.remove(div_index);
+                            digits.add(div_index, String.valueOf(res));
+                            digits.remove(div_index+1);
+                        }
+                        if(operators.contains('+')){
+                            int div_index = operators.indexOf('+');
+                            res = Integer.parseInt(digits.get(div_index)) + Integer.parseInt(digits.get(div_index+1));
+                            operators.remove(div_index);
+
+                            digits.remove(div_index);
+                            digits.add(div_index, String.valueOf(res));
+                            digits.remove(div_index+1);
+                        }
+                    }
+                    result.setText(String.valueOf(res));
                 }
                 else{
-                    result.setText(s);
+                    System.out.println("Error");
                 }
             }
         });

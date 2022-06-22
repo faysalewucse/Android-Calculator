@@ -12,9 +12,9 @@
         android:id="@+id/result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:minHeight="200dp"
         android:background="@color/black"
         android:gravity="end|center_vertical"
-        android:padding="50sp"
         android:text=""
         android:textColor="@color/white"
         android:textSize="50sp"
@@ -34,7 +34,7 @@
             android:layout_weight="3.1"
             android:layout_height="match_parent"
             android:background="#222222"
-            android:text="Clear"
+            android:text="CLEAR"
             android:gravity="center"
             android:textColor="@color/white"
             android:padding="10dp"
@@ -42,7 +42,7 @@
             android:textSize="25sp" />
 
         <TextView
-            android:textSize="20sp"
+            android:textSize="15sp"
             android:id="@+id/delete"
             android:layout_width="0dp"
             android:layout_weight="1"
@@ -81,7 +81,7 @@
                 android:text="7"/>
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/eight"
                 android:gravity="center"
                 android:padding="20sp"
@@ -94,7 +94,7 @@
                 android:text="8"/>
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/nine"
                 android:gravity="center"
                 android:padding="20sp"
@@ -107,7 +107,7 @@
                 android:text="9"/>
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/div"
                 android:gravity="center"
                 android:padding="20sp"
@@ -127,7 +127,7 @@
             android:layout_marginBottom="5dp">
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/four"
                 android:gravity="center"
                 android:padding="20sp"
@@ -140,7 +140,7 @@
                 android:text="4"/>
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/five"
                 android:gravity="center"
                 android:padding="20sp"
@@ -153,7 +153,7 @@
                 android:text="5"/>
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/six"
                 android:gravity="center"
                 android:padding="20sp"
@@ -166,7 +166,7 @@
                 android:text="6"/>
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/multi"
                 android:gravity="center"
                 android:padding="20sp"
@@ -185,7 +185,7 @@
             android:layout_marginBottom="5dp">
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/one"
                 android:gravity="center"
                 android:padding="20sp"
@@ -198,7 +198,7 @@
                 android:text="1"/>
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/two"
                 android:gravity="center"
                 android:padding="20sp"
@@ -211,7 +211,7 @@
                 android:text="2"/>
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/three"
                 android:gravity="center"
                 android:padding="20sp"
@@ -224,7 +224,7 @@
                 android:text="3"/>
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/minus"
                 android:gravity="center"
                 android:padding="20sp"
@@ -243,7 +243,7 @@
             android:layout_marginBottom="5dp">
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/dot"
                 android:gravity="center"
                 android:padding="20sp"
@@ -256,7 +256,7 @@
                 android:text="."/>
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/zero"
                 android:gravity="center"
                 android:padding="20sp"
@@ -269,7 +269,7 @@
                 android:text="0"/>
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/equal"
                 android:gravity="center"
                 android:padding="20sp"
@@ -282,7 +282,7 @@
                 android:text="="/>
 
             <TextView
-                android:textSize="50sp"
+                android:autoSizeTextType="uniform"
                 android:id="@+id/plus"
                 android:gravity="center"
                 android:padding="20sp"
